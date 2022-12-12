@@ -35,65 +35,70 @@
         android:orientation="vertical">
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <LinearLayout
+            <RadioButton
+                android:id="@+id/radioEscuela"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/escuela_icon"
+                android:text="Escuela"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/radioEscuela"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/escuela_icon" />
-
-                <RadioButton
-                    android:id="@+id/radioFiesta"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/fiesta_icon" />
-
-                <RadioButton
-                    android:id="@+id/radioDeportes"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/deportes_icon" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <RadioButton
+                android:id="@+id/radioDeportes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/deportes_icon"
+                android:text="Deportes"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/radioComida"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/comida_icon" />
+            <RadioButton
+                android:id="@+id/radioFiesta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/fiesta_icon"
+                android:text="Fiesta"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/radioFamilia"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/familia_icon" />
+            <RadioButton
+                android:id="@+id/radioSelfie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/selfie_icon"
+                android:text="Selfie"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-                <RadioButton
-                    android:id="@+id/radioSelfie"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableLeft="@drawable/selfie_icon" />
+            <RadioButton
+                android:id="@+id/radioFamilia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/familia_icon"
+                android:text="Familia"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-            </LinearLayout>
+            <RadioButton
+                android:id="@+id/radioComida"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/comida_icon"
+                android:text="Comida"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
         </RadioGroup>
 

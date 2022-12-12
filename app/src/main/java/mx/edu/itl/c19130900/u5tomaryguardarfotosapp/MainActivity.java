@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 abrirCamara();
             }
         });
+
+        carpetas();
     }
 
     private void abrirCamara(){
@@ -61,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (imagenArchivo != null){
-            Uri fotoUri = FileProvider.getUriForFile(this, "mx.edu.itl.c19130900.u5tomaryguardarfotosapp.fileprovider",imagenArchivo);
+            Uri fotoUri = FileProvider.getUriForFile(this,
+                    Environment.getExternalStorageDirectory().getPath() + "DCIM/",imagenArchivo);
             intent.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri);
             startActivityForResult(intent, CODIGO_ABRIR_CAMARA);
         }
@@ -83,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
         File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
         rutaImagen = imagen.getAbsolutePath();
         return imagen;
+    }
+
+    private void carpetas() {
+        // Crear y verificar si las carpetas ya están creadas
+
     }
 
     public void btnAcercaDeClic(View v) {

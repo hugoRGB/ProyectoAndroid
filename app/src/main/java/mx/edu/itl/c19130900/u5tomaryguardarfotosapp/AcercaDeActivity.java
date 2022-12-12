@@ -28,7 +28,7 @@ public class AcercaDeActivity extends AppCompatActivity {
         progressDialog.show();
 
         ruta = "android.resource://" + this.getPackageName() + "/" + R.raw.la_pachanga;
-        videoView =findViewById(R.id.videoView);
+        videoView = findViewById(R.id.videoView);
 
         videoView.setVideoURI(Uri.parse(ruta));
         videoView.setMediaController(new MediaController(this));
