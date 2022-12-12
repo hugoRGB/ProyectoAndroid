@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnCamara;
     RadioButton escuela, fiesta, deportes, comida, familia, selfie;
+    RadioGroup radioGroup;
     ImageView imgView;
     int CODIGO_ABRIR_CAMARA = 1;
     String rutaImagen;
@@ -43,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
         btnCamara = findViewById(R.id.btnCamara);
         imgView = findViewById(R.id.imageView);
 
+        radioGroup = findViewById(R.id.radioGroup);
+
         btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirCamara();
             }
         });
-
-        carpetas();
     }
 
     private void abrirCamara(){
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (imagenArchivo != null){
             Uri fotoUri = FileProvider.getUriForFile(this,
-                    Environment.getExternalStorageDirectory().getPath() + "DCIM/",imagenArchivo);
+                    "mx.edu.itl.c19130900.u5tomaryguardarfotosapp.fileprovider", imagenArchivo);
             intent.putExtra(MediaStore.EXTRA_OUTPUT,fotoUri);
             startActivityForResult(intent, CODIGO_ABRIR_CAMARA);
         }
@@ -81,16 +84,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private File crearImagen() throws IOException {
-        String nombreImagen = "foto_";
-        File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        int id = radioGroup.getCheckedRadioButtonId();
+        View radioB = radioGroup.findViewById(id);
+        int indice = radioGroup.indexOfChild(radioB);
+
+        RadioButton rb = (RadioButton) radioGroup.getChildAt(indice);
+        String nombre = rb.getText().toString();
+
+        String nombreImagen = nombre + "-";
+        File directorio = getExternalFilesDir(Environment.DIRECTORY_DCIM);
         File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
         rutaImagen = imagen.getAbsolutePath();
+
+        // Es para verificar si se guarda con el nombre del RadioButton
+        // Toast.makeText(this, nombreImagen, Toast.LENGTH_SHORT).show();
         return imagen;
-    }
-
-    private void carpetas() {
-        // Crear y verificar si las carpetas ya están creadas
-
     }
 
     public void btnAcercaDeClic(View v) {
