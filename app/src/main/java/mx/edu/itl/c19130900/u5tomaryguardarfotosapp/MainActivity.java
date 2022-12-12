@@ -1,5 +1,7 @@
 package mx.edu.itl.c19130900.u5tomaryguardarfotosapp;
 
+import static android.os.Environment.getExternalStorageDirectory;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void abrirCamara(){
+    public void abrirCamara(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File imagenArchivo = null;
         try {
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private File crearImagen() throws IOException {
+    public File crearImagen() throws IOException {
         int id = radioGroup.getCheckedRadioButtonId();
         View radioB = radioGroup.findViewById(id);
         int indice = radioGroup.indexOfChild(radioB);
@@ -93,11 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
         String nombreImagen = nombre + "-";
         File directorio = getExternalFilesDir(Environment.DIRECTORY_DCIM);
-        File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
+        File imagen =  File.createTempFile(nombreImagen, ".jpg", directorio);
         rutaImagen = imagen.getAbsolutePath();
 
         // Es para verificar si se guarda con el nombre del RadioButton
-        // Toast.makeText(this, nombreImagen, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, imagen.toString(), Toast.LENGTH_LONG).show();
         return imagen;
     }
 
