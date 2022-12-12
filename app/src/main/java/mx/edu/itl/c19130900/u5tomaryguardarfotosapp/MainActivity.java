@@ -1,5 +1,7 @@
 package mx.edu.itl.c19130900.u5tomaryguardarfotosapp;
 
+import static android.os.Environment.getExternalStorageDirectory;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +18,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.io.File;
@@ -25,7 +29,8 @@ import java.util.BitSet;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnCamara;
+    Button camara;
+    RadioButton escuela, fiesta, deportes, comida, familia, selfie;
     ImageView imgView;
     int CODIGO_ABRIR_CAMARA = 1;
     String rutaImagen;
@@ -34,12 +39,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnCamara = findViewById(R.id.btnCamara);
+
+        escuela = findViewById(R.id.radioEscuela);
+        fiesta = findViewById(R.id.radioFiesta);
+        deportes = findViewById(R.id.radioDeportes);
+        comida = findViewById(R.id.radioComida);
+        familia = findViewById(R.id.radioFamilia);
+        selfie = findViewById(R.id.radioSelfie);
         imgView = findViewById(R.id.imageView);
 
-        rutaImagen = getIntent().getStringExtra("rutaMain");
-
-        btnCamara.setOnClickListener(new View.OnClickListener() {
+        camara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirCamara();
@@ -81,11 +90,8 @@ public class MainActivity extends AppCompatActivity {
         return imagen;
     }
 
-    private View explorador;
-
-    public void btnRutaClick(View v) {
-        Intent intent = new Intent(MainActivity.this, ExploradorActivity.class);
-        intent.putExtra("rutaMain", rutaImagen);
+    public void btnAcercaDeClic(View v) {
+        Intent intent = new Intent(this, AcercaDeActivity.class);
         startActivity(intent);
     }
 }
