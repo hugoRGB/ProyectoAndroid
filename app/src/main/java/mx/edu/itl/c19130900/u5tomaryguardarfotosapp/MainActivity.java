@@ -1,6 +1,28 @@
-package mx.edu.itl.c19130900.u5tomaryguardarfotosapp;
+/*------------------------------------------------------------------------------------------
+:*                         TECNOLOGICO NACIONAL DE MEXICO
+:*                                CAMPUS LA LAGUNA
+:*                     INGENIERIA EN SISTEMAS COMPUTACIONALES
+:*                             DESARROLLO EN ANDROID "A"
+:*
+:*                   SEMESTRE: AGO-DIC/2022    HORA: 08-09 HRS
+:*
+:*             Clase que permite seleccionar el identificador de la foto
+:*
+:*  Archivo     : MainActivity.java
+:*  Autores     : Juan Francisco Barragán Barron 19130891
+:*                Javier Arath De La Cerda Martínez 19130900
+:*                Hugo René Guerra Barajas 19130917
+:*  Fecha       : 13/12/2022
+:*  Compilador  : Android Studio Chipmunk | 2021.2.1 Patch 2
+:*  Descripción : Clase que le da un identificador a cada foto tomada y las guarda en
+:*                la carpeta de la aplicación
+:*  Ultima modif:
+:*  Fecha       Modificó             Motivo
+:*==========================================================================================
+:*
+:*------------------------------------------------------------------------------------------*/
 
-import static android.os.Environment.getExternalStorageDirectory;
+package mx.edu.itl.c19130900.u5tomaryguardarfotosapp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +48,7 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Declaración de variables
     Button btnCamara;
     RadioButton escuela, fiesta, deportes, comida, familia, selfie;
     RadioGroup radioGroup;
@@ -38,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Referencia de los elementos del layout
         escuela = findViewById(R.id.radioEscuela);
         fiesta = findViewById(R.id.radioFiesta);
         deportes = findViewById(R.id.radioDeportes);
@@ -50,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         radioGroup = findViewById(R.id.radioGroup);
 
+        // Al hacer clic en el btnCamara lanzará abrirCamara()
         btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Permite abrir la cámara
     public void abrirCamara(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File imagenArchivo = null;
@@ -85,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Crea el archivo de imagen y la guarda con identificador en la carpeta
     public File crearImagen() throws IOException {
+        // Obtenemos el identificador por medio del radioButton seleccionado
         int id = radioGroup.getCheckedRadioButtonId();
         View radioB = radioGroup.findViewById(id);
         int indice = radioGroup.indexOfChild(radioB);
@@ -93,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         RadioButton rb = (RadioButton) radioGroup.getChildAt(indice);
         String nombre = rb.getText().toString();
 
+        // Lo guardamos en la carpeta
         String nombreImagen = nombre + "-";
         File directorio = getExternalFilesDir(Environment.DIRECTORY_DCIM);
         File imagen =  File.createTempFile(nombreImagen, ".jpg", directorio);
